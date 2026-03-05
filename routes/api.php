@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use App\Services\GmailService;
 use App\Http\Controllers\Api\BuyerController;
 use App\Http\Controllers\Api\EmailInboxController;
+use App\Http\Controllers\Api\GmailController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -57,6 +58,21 @@ Route::middleware('auth:api')->group(function () {
             ->get();
     });
 
+    Route::get('/sales-gmail', function () {
+        return \App\Models\GmailAccount::join('users', 'gmail_account.user_id', 'users.id')
+            ->select('gmail_account.id', 'users.name', 'gmail_account.google_email as email')
+            ->get();
+    });
+
     Route::get('/emails', [EmailInboxController::class, 'index']);
-    Route::get('/emails/{threadId}', [EmailInboxController::class,'show']);
+    Route::get('/emails/{threadId}', [EmailInboxController::class, 'show']);
+
+    Route::prefix('gmail')->group(function () {
+
+        Route::get('/{account}/inbox', [GmailController::class, 'inbox']);
+
+        Route::get('/{account}/sent', [GmailController::class, 'sent']);
+
+        Route::get('/{account}/message/{messageId}', [GmailController::class, 'detail']);
+    });
 });

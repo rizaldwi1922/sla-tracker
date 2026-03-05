@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage";
 import EmailsPage from "./pages/EmailsPage";
 import BuyersPage from "./pages/BuyersPage";
 import ReportsPage from "./pages/ReportsPage";
+import GmailPage from "./pages/GmailPage";
 import "./config/global.css";
 import OAuthSuccessPage from "./pages/OAuthSuccessPage";
 import PrivateRoute from "./components/shared/PrivateRoute";
@@ -49,6 +50,14 @@ export default function App() {
                             element={
                                 <PrivateRoute roles={["admin"]}>
                                     <ThreadConversationPage />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="/gmail"
+                            element={
+                                <PrivateRoute roles={["admin"]}>
+                                    <GmailPage />
                                 </PrivateRoute>
                             }
                         />

@@ -27,7 +27,7 @@ class GmailWebhookController extends Controller
         }
 
         $decoded = json_decode(base64_decode($data), true);
-         \Log::error('GMAIL WEBHOOK', $decoded);
+         \Log::error('GMAIL WEBHOOK -> new', $decoded);
 
         $emailAddress = $decoded['emailAddress'];
         $historyId = $decoded['historyId'];
