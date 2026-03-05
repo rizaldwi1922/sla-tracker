@@ -9,6 +9,7 @@ use App\Services\GmailService;
 use App\Http\Controllers\Api\BuyerController;
 use App\Http\Controllers\Api\EmailInboxController;
 use App\Http\Controllers\Api\GmailController;
+use App\Http\Controllers\Api\ReportController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -75,4 +76,6 @@ Route::middleware('auth:api')->group(function () {
 
         Route::get('/{account}/message/{messageId}', [GmailController::class, 'detail']);
     });
+
+    Route::get('/dashboard/sla', [ReportController::class,'slaDashboard']);
 });

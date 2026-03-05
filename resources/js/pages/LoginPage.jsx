@@ -146,7 +146,6 @@ export default function LoginPage() {
                             >
                                 Login as Admin
                             </Button>
-                            <Text style={s.hint}>Demo: admin / admin123</Text>
                         </Form>
                     ) : (
                         <Form
@@ -154,23 +153,6 @@ export default function LoginPage() {
                             layout="vertical"
                             onFinish={handleSales}
                         >
-                            <Alert
-                                message="In production this uses Google OAuth. Any Gmail works for demo."
-                                type="info"
-                                showIcon
-                                style={{ marginBottom: 16 }}
-                            />
-                            <Form.Item
-                                label="Gmail Address"
-                                name="email"
-                                rules={[{ required: true, type: "email" }]}
-                            >
-                                <Input
-                                    prefix={<GoogleOutlined />}
-                                    placeholder="your.name@gmail.com"
-                                    size="large"
-                                />
-                            </Form.Item>
                             <Button
                                 onClick={handleSales}
                                 block

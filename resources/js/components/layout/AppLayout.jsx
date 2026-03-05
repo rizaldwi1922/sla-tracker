@@ -29,6 +29,7 @@ const NAV_ITEMS = [
     { key: "/dashboard", icon: <DashboardOutlined />, label: "Dashboard" },
     { key: "/emails",    icon: <MailOutlined />,      label: "Email Inbox" },
     { key: "/gmail",     icon: <GoogleOutlined />,    label: "Gmail" },
+    { key: "/sales-list",    icon: <TeamOutlined />,      label: "Sales List" },
     { key: "/buyers",    icon: <TeamOutlined />,      label: "Master Buyer" },
     { key: "/reports",   icon: <BarChartOutlined />,  label: "Reports" },
 ];

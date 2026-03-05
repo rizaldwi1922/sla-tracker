@@ -12,6 +12,7 @@ import "./config/global.css";
 import OAuthSuccessPage from "./pages/OAuthSuccessPage";
 import PrivateRoute from "./components/shared/PrivateRoute";
 import ThreadConversationPage from "./pages/ThreadConversationPage";
+import SalesListPage from "./pages/SalesListPage";
 
 export default function App() {
     return (
@@ -23,6 +24,16 @@ export default function App() {
                     <Route
                         path="/oauth-success"
                         element={<OAuthSuccessPage />}
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            localStorage.getItem("token") ? (
+                                <Navigate to="/dashboard" replace />
+                            ) : (
+                                <Navigate to="/login" replace />
+                            )
+                        }
                     />
 
                     {/* Protected */}
@@ -67,6 +78,15 @@ export default function App() {
                             element={
                                 <PrivateRoute roles={["admin"]}>
                                     <BuyersPage />
+                                </PrivateRoute>
+                            }
+                        />
+
+                        <Route
+                            path="/sales-list"
+                            element={
+                                <PrivateRoute roles={["admin"]}>
+                                    <SalesListPage />
                                 </PrivateRoute>
                             }
                         />

@@ -24,9 +24,11 @@ export default function BuyersPage() {
     const [editRecord, setEdit] = useState(null);
     const [deleteTarget, setDel] = useState(null);
     const [salesList, setSalesList] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const fetchBuyers = async () => {
         try {
+            setLoading(true);
             const res = await apiRequest({
                 method: "GET",
                 url: "/buyers",
@@ -48,6 +50,8 @@ export default function BuyersPage() {
                 message: "Failed to load buyers",
                 placement: "bottomRight",
             });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -254,6 +258,7 @@ export default function BuyersPage() {
                     rowKey="id"
                     pagination={{ pageSize: 8 }}
                     size="middle"
+                    loading={loading}
                 />
             </Card>
 
@@ -269,6 +274,7 @@ export default function BuyersPage() {
                 message="Delete this buyer?"
                 onConfirm={handleDelete}
                 onCancel={() => setDel(null)}
+                
             />
         </div>
     );

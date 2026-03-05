@@ -23,7 +23,7 @@ class GmailWebhookController extends Controller
         $data = $request->input('message.data');
 
         if (!$data) {
-            return response()->json(['ok' => true]);
+            return response()->json(['ok' => true], 200);
         }
 
         $decoded = json_decode(base64_decode($data), true);
@@ -35,7 +35,7 @@ class GmailWebhookController extends Controller
         $gmail = GmailAccount::where('google_email', $emailAddress)->first();
 
         if (!$gmail) {
-            return response()->json(['ok' => true]);
+            return response()->json(['ok' => true], 200);
         }
 
         $gmailService = app(GmailService::class);
@@ -46,7 +46,7 @@ class GmailWebhookController extends Controller
             $gmail->history_id = $historyId;
             $gmail->save();
 
-            return response()->json(['ok' => true]);
+            return response()->json(['ok' => true], 200);
         }
 
         // ambil history gmail
@@ -73,7 +73,7 @@ class GmailWebhookController extends Controller
         $gmail->history_id = $historyId;
         $gmail->save();
 
-        return response()->json(['ok' => true]);
+        return response()->json(['ok' => true], 200);
     }
 
 
