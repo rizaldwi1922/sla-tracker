@@ -38,7 +38,7 @@ export default function SalesPerformanceCard({ salesPerformance = [], loading = 
                   {name.charAt(0)}
                 </Avatar>
                 <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 2 }}>
                     <Text style={{ color: "#cbd5e1", fontSize: 13 }}>{name}</Text>
                     <Text
                       style={{
@@ -48,6 +48,14 @@ export default function SalesPerformanceCard({ salesPerformance = [], loading = 
                       }}
                     >
                       {pct}%
+                    </Text>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                    <Text style={{ color: "#94a3b8", fontSize: 11 }}>
+                      <span style={{ color: "#22c55e", fontWeight: 600 }}>{row.on_time}</span> on-time / <span style={{ color: "#cbd5e1", fontWeight: 600 }}>{row.total_emails}</span> emails
+                    </Text>
+                    <Text style={{ color: "#ef4444", fontSize: 11, fontWeight: 600 }}>
+                      {row.total_emails - row.on_time} overdue
                     </Text>
                   </div>
                   <Progress

@@ -114,7 +114,7 @@ function Detail({ accountId, messageId, salesId, tab }) {
       <div className="gm-panel-detail">
         <div className="gm-detail-empty">
           <MailOutlined style={{ fontSize: 36, color: "#1e3a5f" }} />
-          <Text style={{ color: "#334155", fontSize: 13 }}>Pilih email untuk membaca</Text>
+          <Text style={{ color: "#94a3b8", fontSize: 13 }}>Pilih email untuk membaca</Text>
         </div>
       </div>
     );
@@ -126,7 +126,7 @@ function Detail({ accountId, messageId, salesId, tab }) {
       <div className="gm-panel-detail">
         <div className="gm-detail-empty">
           <Spin indicator={<LoadingOutlined style={{ fontSize: 28, color: "#3b82f6" }} spin />} />
-          <Text style={{ color: "#334155", fontSize: 13, marginTop: 12 }}>Memuat email…</Text>
+          <Text style={{ color: "#94a3b8", fontSize: 13, marginTop: 12 }}>Memuat email…</Text>
         </div>
       </div>
     );
@@ -158,7 +158,7 @@ function Detail({ accountId, messageId, salesId, tab }) {
       {/* toolbar */}
       <div className="gm-detail-hd">
         <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-          {isInbox ? <InboxOutlined style={{ color: "#475569" }} /> : <SendOutlined style={{ color: "#475569" }} />}
+          {isInbox ? <InboxOutlined style={{ color: "#94a3b8" }} /> : <SendOutlined style={{ color: "#94a3b8" }} />}
           <Text style={{ color: "#64748b", fontSize: 12, fontWeight: 600 }}>{isInbox ? "Inbox" : "Sent"}</Text>
         </div>
       </div>
@@ -188,22 +188,19 @@ function Detail({ accountId, messageId, salesId, tab }) {
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 7, flexWrap: "wrap", marginBottom: 2 }}>
               <Text style={{ color: "#f1f5f9", fontWeight: 700, fontSize: 13 }}>{sender?.name}</Text>
-              <Text style={{ color: "#334155", fontSize: 11 }}>&lt;{sender?.email}&gt;</Text>
-              {isInbox
-                ? <span style={{ fontSize: 10, padding: "1px 7px", borderRadius: 9, background: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.25)", color: "#c4b5fd", fontWeight: 600 }}>Buyer</span>
-                : <span style={{ fontSize: 10, padding: "1px 7px", borderRadius: 9, background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)", color: "#93c5fd", fontWeight: 600 }}>Sales</span>
-              }
+              <Text style={{ color: "#cbd5e1", fontSize: 11 }}>&lt;{sender?.email}&gt;</Text>
+              
             </div>
             <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-              <Text style={{ color: "#334155", fontSize: 11 }}>To:</Text>
+              <Text style={{ color: "#94a3b8", fontSize: 11 }}>To:</Text>
               {recips.map((r, i) => (
-                <Text key={i} style={{ color: "#475569", fontSize: 11 }}>{r.name} &lt;{r.email}&gt;</Text>
+                <Text key={i} style={{ color: "#cbd5e1", fontSize: 11 }}>{r.name} &lt;{r.email}&gt;</Text>
               ))}
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
-            <CalendarOutlined style={{ color: "#334155", fontSize: 11 }} />
-            <Text style={{ color: "#475569", fontSize: 11, whiteSpace: "nowrap" }}>
+            <CalendarOutlined style={{ color: "#94a3b8", fontSize: 11 }} />
+            <Text style={{ color: "#94a3b8", fontSize: 11, whiteSpace: "nowrap" }}>
               {dateVal ? dayjs(dateVal).format("DD MMM YYYY, HH:mm") : "—"}
             </Text>
           </div>
@@ -217,7 +214,7 @@ function Detail({ accountId, messageId, salesId, tab }) {
         {/* attachments */}
         {message.has_attachment && message.attachments?.length > 0 && (
           <div style={{ paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-            <Text style={{ color: "#475569", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", display: "block", marginBottom: 8 }}>
+            <Text style={{ color: "#94a3b8", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", display: "block", marginBottom: 8 }}>
               Attachments
             </Text>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -262,7 +259,7 @@ function EmailList({ emails, loading, error, tab, selectedId, onSelect, nextPage
     return (
       <div className="gm-email-list" style={{ padding: "40px 16px", textAlign: "center" }}>
         <MailOutlined style={{ fontSize: 28, color: "#1e3a5f", display: "block", marginBottom: 8 }} />
-        <Text style={{ color: "#334155", fontSize: 12 }}>Tidak ada email</Text>
+        <Text style={{ color: "#94a3b8", fontSize: 12 }}>Tidak ada email</Text>
       </div>
     );
   }
@@ -294,7 +291,7 @@ function EmailList({ emails, loading, error, tab, selectedId, onSelect, nextPage
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 3, flexShrink: 0 }}>
                   <span className="gm-i-date">{fmtD(dateVal)}</span>
-                  {msg.has_attachment && <PaperClipOutlined style={{ color: "#2d3d52", fontSize: 10 }} />}
+                  {msg.has_attachment && <PaperClipOutlined style={{ color: "#64748b", fontSize: 10 }} />}
                 </div>
               </div>
               <div className="gm-i-subj">{msg.subject ?? "(No Subject)"}</div>
@@ -396,7 +393,7 @@ export default function GmailPage() {
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14, flexShrink: 0 }}>
         <div>
           <h2 style={{ color: "#f1f5f9", fontWeight: 800, fontSize: 18, margin: 0, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Gmail</h2>
-          <Text style={{ color: "#64748b", fontSize: 13, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Email inbox & sent semua sales</Text>
+          <Text style={{ color: "#94a3b8", fontSize: 13, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Email inbox & sent semua sales</Text>
         </div>
         <button
           style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "7px 14px", borderRadius: 9, border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.05)", color: "#64748b", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "inherit" }}
@@ -424,7 +421,7 @@ export default function GmailPage() {
           {/* LEFT: Sales */}
           <div className="gm-panel-sales">
             <div className="gm-panel-sales-hd">
-              <Text style={{ color: "#475569", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em" }}>
+              <Text style={{ color: "#94a3b8", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.07em" }}>
                 Sales ({sales.length})
               </Text>
             </div>
@@ -440,7 +437,7 @@ export default function GmailPage() {
                     <div className="gm-s-av">{s.avatar}</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div className="gm-s-name">{s.name}</div>
-                      <Text style={{ color: "#2d3d52", fontSize: 10, fontFamily: "inherit" }}>
+                      <Text style={{ color: "#94a3b8", fontSize: 10, fontFamily: "inherit" }}>
                         {s.email}
                       </Text>
                     </div>
@@ -461,12 +458,12 @@ export default function GmailPage() {
                 </button>
                 <button className={`gm-tab ${tab === "sent" ? "active" : ""}`} onClick={() => handleTab("sent")}>
                   <SendOutlined style={{ fontSize: 13 }} /> Sent
-                  {curSent > 0 && <span className="gm-tab-cnt" style={{ background: "rgba(255,255,255,0.07)", color: "#475569" }}>{curSent}</span>}
+                  {curSent > 0 && <span className="gm-tab-cnt" style={{ background: "rgba(255,255,255,0.07)", color: "#94a3b8" }}>{curSent}</span>}
                 </button>
               </div>
               {/* Search */}
               <div style={{ position: "relative" }}>
-                <SearchOutlined style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "#475569", fontSize: 12, zIndex: 1 }} />
+                <SearchOutlined style={{ position: "absolute", left: 9, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 12, zIndex: 1 }} />
                 <input
                   className="gm-search-box"
                   value={search}

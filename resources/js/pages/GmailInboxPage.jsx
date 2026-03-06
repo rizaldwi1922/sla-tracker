@@ -74,7 +74,7 @@ export default function GmailInboxPage() {
 
         {/* ── Sales selector ── */}
         <div style={{ marginBottom: 18 }}>
-          <Text style={{ color: "#475569", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 10 }}>
+          <Text style={{ color: "#cbd5e1", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 10 }}>
             Pilih Sales
           </Text>
 
@@ -111,7 +111,7 @@ export default function GmailInboxPage() {
         {/* ── Toolbar ── */}
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
           <div className="gm-search-wrap" style={{ flex: 1, maxWidth: 380, position: "relative" }}>
-            <SearchOutlined style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#475569", zIndex: 1 }} />
+            <SearchOutlined style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", zIndex: 1 }} />
             <Input
               placeholder="Cari pengirim, subjek…"
               value={search}
@@ -123,7 +123,7 @@ export default function GmailInboxPage() {
 
           <div style={{ display: "flex", gap: 8, marginLeft: "auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <InboxOutlined style={{ color: "#64748b", fontSize: 13 }} />
+              <InboxOutlined style={{ color: "#94a3b8", fontSize: 13 }} />
               <Text style={{ color: "#94a3b8", fontSize: 12, fontWeight: 600 }}>{filtered.length} email</Text>
             </div>
             {unreadCount > 0 && (
@@ -146,8 +146,8 @@ export default function GmailInboxPage() {
         ) : filtered.length === 0 ? (
           <div className="gm-list" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
             <div className="gm-empty">
-              <InboxOutlined style={{ fontSize: 36, color: "#1e3a5f" }} />
-              <Text style={{ color: "#334155", fontSize: 14 }}>Tidak ada email</Text>
+              <InboxOutlined style={{ fontSize: 36, color: "#475569" }} />
+              <Text style={{ color: "#94a3b8", fontSize: 14 }}>Tidak ada email</Text>
             </div>
           </div>
         ) : (
@@ -168,7 +168,7 @@ export default function GmailInboxPage() {
 
                   <div className="gm-sender-col">
                     <div className="gm-sender-name">{fromParsed?.name}</div>
-                    <Text style={{ color: "#334155", fontSize: 11 }}>{fromParsed?.email}</Text>
+                    <Text style={{ color: "#cbd5e1", fontSize: 11 }}>{fromParsed?.email}</Text>
                   </div>
 
                   <div className="gm-subject-col">

@@ -65,7 +65,7 @@ function EmailBody({ html }) {
             padding: "4px 12px", borderRadius: 20,
             border: "1px solid rgba(255,255,255,0.12)",
             background: "rgba(255,255,255,0.05)",
-            color: "#64748b", fontSize: 11, fontWeight: 600,
+            color: "#cbd5e1", fontSize: 11, fontWeight: 600,
             cursor: "pointer", fontFamily: "inherit",
             transition: "all 0.15s",
           }}
@@ -102,7 +102,7 @@ export default function GmailDetailPage() {
         <style>{gmailCss}</style>
         <div className="gm-empty" style={{ height: "60vh" }}>
           <Spin indicator={<LoadingOutlined style={{ fontSize: 36, color: "#3b82f6" }} spin />} />
-          <Text style={{ color: "#334155", marginTop: 16 }}>Memuat email…</Text>
+          <Text style={{ color: "#94a3b8", marginTop: 16 }}>Memuat email…</Text>
         </div>
       </>
     );
@@ -138,8 +138,8 @@ export default function GmailDetailPage() {
       <>
         <style>{gmailCss}</style>
         <div className="gm-empty" style={{ height: "60vh" }}>
-          <MailOutlined style={{ fontSize: 40, color: "#1e3a5f" }} />
-          <Text style={{ color: "#334155" }}>Email tidak ditemukan</Text>
+          <MailOutlined style={{ fontSize: 40, color: "#475569" }} />
+          <Text style={{ color: "#94a3b8" }}>Email tidak ditemukan</Text>
           <button className="gm-back-btn" onClick={() => navigate(backPath)}>
             <ArrowLeftOutlined /> Kembali
           </button>
@@ -190,31 +190,11 @@ export default function GmailDetailPage() {
 
           {/* From / To meta */}
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start" }}>
-            {/* Sender */}
-            <div style={{ display: "flex", gap: 10, alignItems: "flex-start", flex: 1, minWidth: 220 }}>
-              <AvatarLetter name={sender?.name} size={40} />
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                  <Text style={{ color: "#f1f5f9", fontWeight: 700, fontSize: 14 }}>{sender?.name}</Text>
-                  {isInbox && (
-                    <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 9, background: "rgba(167,139,250,0.12)", border: "1px solid rgba(167,139,250,0.25)", color: "#c4b5fd", fontWeight: 600 }}>
-                      Buyer
-                    </span>
-                  )}
-                  {!isInbox && (
-                    <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 9, background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.25)", color: "#93c5fd", fontWeight: 600 }}>
-                      Sales
-                    </span>
-                  )}
-                </div>
-                <Text style={{ color: "#475569", fontSize: 12 }}>{sender?.email}</Text>
-              </div>
-            </div>
 
             {/* Meta pills */}
             <div style={{ display: "flex", flexDirection: "column", gap: 7, alignItems: "flex-end" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 12px", borderRadius: 20, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <CalendarOutlined style={{ color: "#475569", fontSize: 12 }} />
+                <CalendarOutlined style={{ color: "#94a3b8", fontSize: 12 }} />
                 <Text style={{ color: "#94a3b8", fontSize: 12, fontWeight: 500 }}>{dateStr}</Text>
               </div>
             </div>
@@ -223,7 +203,7 @@ export default function GmailDetailPage() {
           {/* To */}
           {recipients.length > 0 && (
             <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-              <Text style={{ color: "#334155", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+              <Text style={{ color: "#cbd5e1", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
                 To
               </Text>
               <div style={{ marginTop: 6, display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -231,7 +211,7 @@ export default function GmailDetailPage() {
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: 6, padding: "4px 10px", borderRadius: 9, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <AvatarLetter name={r.name} size={20} />
                     <Text style={{ color: "#94a3b8", fontSize: 12 }}>{r.name}</Text>
-                    <Text style={{ color: "#334155", fontSize: 11 }}>&lt;{r.email}&gt;</Text>
+                    <Text style={{ color: "#cbd5e1", fontSize: 11 }}>&lt;{r.email}&gt;</Text>
                   </div>
                 ))}
               </div>
@@ -246,7 +226,7 @@ export default function GmailDetailPage() {
           {/* Attachments */}
           {message.has_attachment && message.attachments?.length > 0 && (
             <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-              <Text style={{ color: "#475569", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", display: "block", marginBottom: 10 }}>
+              <Text style={{ color: "#cbd5e1", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", display: "block", marginBottom: 10 }}>
                 <PaperClipOutlined style={{ marginRight: 6 }} />
                 Attachments
               </Text>
@@ -256,7 +236,7 @@ export default function GmailDetailPage() {
                     key={a.filename}
                     style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 14px", borderRadius: 10, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", cursor: "pointer", transition: "background 0.15s" }}
                   >
-                    <PaperClipOutlined style={{ color: "#64748b", fontSize: 14 }} />
+                    <PaperClipOutlined style={{ color: "#94a3b8", fontSize: 14 }} />
                     <Text style={{ color: "#94a3b8", fontSize: 13 }}>{a.filename}</Text>
                   </div>
                 ))}

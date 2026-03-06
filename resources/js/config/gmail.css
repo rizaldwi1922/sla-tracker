@@ -1,4 +1,4 @@
-  .gm-root {
+.gm-root {
     font-family: 'Plus Jakarta Sans', sans-serif;
     display: flex; height: 100%; gap: 0; overflow: hidden;
   }
@@ -37,7 +37,7 @@
   }
   .gm-sales-item.active .gm-s-av { background: rgba(59,130,246,0.3); color: #93c5fd; }
   .gm-s-name {
-    font-size: 12px; font-weight: 600; color: #94a3b8;
+    font-size: 12px; font-weight: 600; color: #cbd5e1;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex:1; min-width:0;
     transition: color 0.14s;
   }
@@ -72,7 +72,7 @@
     flex:1; display: flex; align-items: center; justify-content: center; gap: 5px;
     padding: 7px 8px; border-radius: 8px; border: none; background: none;
     font-family: inherit; font-size: 12px; font-weight: 600;
-    color: #64748b; cursor: pointer; transition: color 0.14s, background 0.14s;
+    color: #94a3b8; cursor: pointer; transition: color 0.14s, background 0.14s;
   }
   .gm-tab:hover { color: #cbd5e1; background: rgba(255,255,255,0.05); }
   .gm-tab.active { color: #e2e8f0; background: rgba(255,255,255,0.09); box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
@@ -90,7 +90,7 @@
     font-size: 12px; font-family: inherit; outline: none;
     transition: border-color 0.15s;
   }
-  .gm-search-box::placeholder { color: #334155; }
+  .gm-search-box::placeholder { color: #94a3b8; }
   .gm-search-box:focus { border-color: rgba(59,130,246,0.4); }
   .gm-email-list { flex:1; overflow-y:auto; }
   .gm-email-item {
@@ -107,13 +107,13 @@
     position: absolute; left: 4px; top: 50%; transform: translateY(-50%);
     width: 5px; height: 5px; border-radius: 50%; background: #3b82f6;
   }
-  .gm-i-from { font-size: 12px; font-weight: 600; color: #94a3b8; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; flex:1; }
+  .gm-i-from { font-size: 12px; font-weight: 600; color: #e2e8f0; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; flex:1; }
   .gm-email-item.unread .gm-i-from { color: #f1f5f9; font-weight: 700; }
   .gm-email-item.selected .gm-i-from { color: #93c5fd; }
-  .gm-i-subj { font-size: 12px; color: #64748b; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; margin: 2px 0; }
+  .gm-i-subj { font-size: 12px; color: #cbd5e1; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; margin: 2px 0; }
   .gm-email-item.unread .gm-i-subj { color: #cbd5e1; font-weight: 600; }
-  .gm-i-snip { font-size: 11px; color: #2d3d52; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
-  .gm-i-date { font-size: 10px; color: #334155; font-weight: 500; flex-shrink:0; }
+  .gm-i-snip { font-size: 11px; color: #94a3b8; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+  .gm-i-date { font-size: 10px; color: #94a3b8; font-weight: 500; flex-shrink:0; }
   .gm-email-item.unread .gm-i-date { color: #93c5fd; font-weight: 700; }
 
   /* RIGHT panel */
@@ -135,7 +135,7 @@
   .gm-d-btn {
     display: inline-flex; align-items: center; gap: 5px;
     padding: 5px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.05); color: #64748b;
+    background: rgba(255,255,255,0.05); color: #94a3b8;
     font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
     transition: all 0.14s;
   }
@@ -153,7 +153,7 @@
   .gm-email-body a { color: #60a5fa !important; text-decoration: underline; }
   .gm-email-body table { width:100% !important; border-collapse:collapse !important; margin-bottom:10px !important; }
   .gm-email-body td,.gm-email-body th { padding: 5px 8px !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; }
-  .gm-email-body blockquote { border-left: 3px solid rgba(59,130,246,0.35) !important; padding-left: 14px !important; margin: 10px 0 !important; color: #475569 !important; font-style: italic; }
+  .gm-email-body blockquote { border-left: 3px solid rgba(59,130,246,0.35) !important; padding-left: 14px !important; margin: 10px 0 !important; color: #94a3b8 !important; font-style: italic; }
 
   /* label chip */
   .gm-label {
@@ -167,7 +167,7 @@
     display: inline-flex; align-items: center; gap: 4px;
     margin-top: 8px; padding: 3px 10px; border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05);
-    color: #64748b; font-size: 11px; font-weight: 600;
+    color: #94a3b8; font-size: 11px; font-weight: 600;
     cursor: pointer; font-family: inherit; transition: all 0.14s;
   }
   .gm-toggle:hover { color: #94a3b8; border-color: rgba(255,255,255,0.2); }

@@ -103,7 +103,11 @@ class ReportController extends Controller
                     'subject' => $email->subject,
                     'buyer' => $email->buyer->company ?? null,
                     'sales' => $email->sales->name ?? null,
-                    'due_at' => $email->sla_due_at
+                    'due_at' => $email->sla_due_at,
+                    'preview' => Str::limit(
+                        trim(strip_tags($email->body)),
+                        140
+                    ),
                 ];
             });
 
@@ -126,7 +130,7 @@ class ReportController extends Controller
                     'id' => $email->id,
                     'subject' => $email->subject,
                     'buyer' => $email->buyer->company ?? null,
-
+                    'sales' => $email->sales->name ?? null,
                     'preview' => Str::limit(
                         trim(strip_tags($email->body)),
                         140
@@ -149,6 +153,149 @@ class ReportController extends Controller
             'upcoming_due_dates' => $upcoming,
 
             'sla_reminders' => $reminders
+        ]);
+    }
+
+    public function slaReport(Request $request)
+    {
+        $salesId = $request->sales_id;
+        $range   = $request->range ?? 30;
+
+        $startDate = now()->subDays($range);
+
+        $query = Email::where('type', 'inbox')
+            ->where('received_at', '>=', $startDate);
+
+        if ($salesId) {
+            $query->where('sales_id', $salesId);
+        }
+
+        /*
+    |--------------------------------------------------------------------------
+    | RESPONSE TIME DISTRIBUTION
+    |--------------------------------------------------------------------------
+    */
+
+        $distribution = DB::table('emails')
+            ->selectRaw("
+            COUNT(*) FILTER (
+                WHERE EXTRACT(EPOCH FROM (first_reply_at - received_at))/3600 < 1
+            ) as under_1h,
+
+            COUNT(*) FILTER (
+                WHERE EXTRACT(EPOCH FROM (first_reply_at - received_at))/3600 BETWEEN 1 AND 12
+            ) as hour_1_12,
+
+            COUNT(*) FILTER (
+                WHERE EXTRACT(EPOCH FROM (first_reply_at - received_at))/3600 BETWEEN 12 AND 24
+            ) as hour_12_24,
+
+            COUNT(*) FILTER (
+                WHERE EXTRACT(EPOCH FROM (first_reply_at - received_at))/3600 > 24
+            ) as over_24h
+        ")
+            ->whereNotNull('first_reply_at')
+            ->where('type', 'inbox')
+            ->when($salesId, function ($q) use ($salesId) {
+                $q->where('sales_id', $salesId);
+            })
+            ->where('received_at', '>=', $startDate)
+            ->first();
+
+        /*
+    |--------------------------------------------------------------------------
+    | SLA COMPLIANCE
+    |--------------------------------------------------------------------------
+    */
+
+        $total = $query->count();
+
+        $onTime = Email::where('type', 'inbox')
+            ->whereNotNull('first_reply_at')
+            ->whereColumn('first_reply_at', '<=', 'sla_due_at')
+            ->where('received_at', '>=', $startDate)
+            ->when($salesId, function ($q) use ($salesId) {
+                $q->where('sales_id', $salesId);
+            })
+            ->count();
+
+        $compliance = $total > 0
+            ? round(($onTime / $total) * 100)
+            : 0;
+
+        /*
+    |--------------------------------------------------------------------------
+    | SALES PERFORMANCE SUMMARY
+    |--------------------------------------------------------------------------
+    */
+
+        $salesSummary = Email::select(
+            'sales_id',
+            DB::raw('COUNT(*) as total_emails'),
+
+            DB::raw("
+            SUM(
+                CASE
+                WHEN first_reply_at <= sla_due_at
+                THEN 1 ELSE 0
+                END
+            ) as on_time
+        "),
+
+            DB::raw("
+            SUM(
+                CASE
+                WHEN first_reply_at > sla_due_at
+                THEN 1 ELSE 0
+                END
+            ) as overdue
+        "),
+
+            DB::raw("
+            AVG(
+                EXTRACT(EPOCH FROM (first_reply_at - received_at))/3600
+            ) as avg_response_hours
+        ")
+
+        )
+            ->where('type', 'inbox')
+            ->whereNotNull('sales_id')
+            ->where('received_at', '>=', $startDate)
+            ->when($salesId, function ($q) use ($salesId) {
+                $q->where('sales_id', $salesId);
+            })
+            ->groupBy('sales_id')
+            ->with('sales:id,name')
+            ->get()
+            ->map(function ($row) {
+
+                $compliance = $row->total_emails > 0
+                    ? round(($row->on_time / $row->total_emails) * 100)
+                    : 0;
+
+                return [
+                    'sales_id' => $row->sales_id,
+                    'sales_name' => $row->sales->name ?? null,
+                    'total_emails' => $row->total_emails,
+                    'on_time' => $row->on_time,
+                    'overdue' => $row->overdue,
+                    'avg_response_hours' => round($row->avg_response_hours, 2),
+                    'compliance_percent' => $compliance
+                ];
+            });
+
+        return response()->json([
+
+            'response_time_distribution' => [
+                'under_1_hour' => $distribution->under_1h ?? 0,
+                'hour_1_12' => $distribution->hour_1_12 ?? 0,
+                'hour_12_24' => $distribution->hour_12_24 ?? 0,
+                'over_24_hour' => $distribution->over_24h ?? 0
+            ],
+
+            'sla_compliance_rate' => $compliance,
+
+            'sales_performance' => $salesSummary
         ]);
     }
 }

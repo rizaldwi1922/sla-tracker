@@ -79,7 +79,7 @@ export default function GmailSentPage() {
 
         {/* ── Sales selector ── */}
         <div style={{ marginBottom: 18 }}>
-          <Text style={{ color: "#475569", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 10 }}>
+          <Text style={{ color: "#94a3b8", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", display: "block", marginBottom: 10 }}>
             Pilih Sales
           </Text>
 
@@ -100,7 +100,7 @@ export default function GmailSentPage() {
                   <div className="chip-avatar">{s.avatar}</div>
                   {s.name}
                   {activeSalesId === (s.gmailAccountId ?? s.id) && emails.length > 0 && (
-                    <span style={{ color: "#475569", fontSize: 11, fontWeight: 600 }}>
+                    <span style={{ color: "#94a3b8", fontSize: 11, fontWeight: 600 }}>
                       {emails.length}
                     </span>
                   )}
@@ -113,7 +113,7 @@ export default function GmailSentPage() {
         {/* ── Toolbar ── */}
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
           <div className="gm-search-wrap" style={{ flex: 1, maxWidth: 380, position: "relative" }}>
-            <SearchOutlined style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#475569", zIndex: 1 }} />
+            <SearchOutlined style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", zIndex: 1 }} />
             <Input
               placeholder="Cari penerima, subjek…"
               value={search}
@@ -123,7 +123,7 @@ export default function GmailSentPage() {
             />
           </div>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)" }}>
-            <SendOutlined style={{ color: "#64748b", fontSize: 13 }} />
+            <SendOutlined style={{ color: "#94a3b8", fontSize: 13 }} />
             <Text style={{ color: "#94a3b8", fontSize: 12, fontWeight: 600 }}>
               {filtered.length} terkirim
             </Text>
@@ -145,8 +145,8 @@ export default function GmailSentPage() {
         ) : filtered.length === 0 ? (
           <div className="gm-list">
             <div className="gm-empty">
-              <SendOutlined style={{ fontSize: 36, color: "#1e3a5f" }} />
-              <Text style={{ color: "#334155", fontSize: 14 }}>
+              <SendOutlined style={{ fontSize: 36, color: "#475569" }} />
+              <Text style={{ color: "#94a3b8", fontSize: 14 }}>
                 {search ? "Tidak ada hasil pencarian" : "Tidak ada email terkirim"}
               </Text>
             </div>
@@ -172,12 +172,12 @@ export default function GmailSentPage() {
                     <div className="gm-sender-name">
                       To: {recipient.name}
                       {toList.length > 1 && (
-                        <span style={{ color: "#475569", fontWeight: 400 }}>
+                        <span style={{ color: "#94a3b8", fontWeight: 400 }}>
                           {" "}+{toList.length - 1}
                         </span>
                       )}
                     </div>
-                    <Text style={{ color: "#334155", fontSize: 11 }}>{recipient.email}</Text>
+                    <Text style={{ color: "#94a3b8", fontSize: 11 }}>{recipient.email}</Text>
                   </div>
 
                   {/* Subject + snippet */}
@@ -188,7 +188,7 @@ export default function GmailSentPage() {
 
                   {/* Date */}
                   <div className="gm-meta-col">
-                    <span className="gm-date" style={{ color: "#475569" }}>
+                    <span className="gm-date" style={{ color: "#94a3b8" }}>
                       {fmtEmailDate(msg.date)}
                     </span>
                   </div>

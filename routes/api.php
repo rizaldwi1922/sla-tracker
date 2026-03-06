@@ -78,4 +78,5 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::get('/dashboard/sla', [ReportController::class,'slaDashboard']);
+    Route::get('/report/sla-report', [ReportController::class, 'slaReport']);
 });
